@@ -1,0 +1,91 @@
+.categories_list ul,
+.categories_list ul li,
+.categories_list ul li a,
+.categories_list ul li span {
+    vertical-align: top;
+}
+.categories_list ul li {
+    margin: 0;
+}
+
+.categories_list a:focus .categories_list_state_img,
+.categories_list a:hover .categories_list_state_img {
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}
+.categories_list a:active .categories_list_state_img {
+    filter: alpha(opacity=20);
+    opacity: 0.2;
+}
+
+.categories_list_state_img {
+    vertical-align: top;
+    font-size: 0;
+    line-height: 0;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    width: 16px;
+    cursor: pointer;
+    height: 16px;
+}
+.categories_list_ouvert .categories_list_state_img {
+    background: transparent url(../images/minus.png) no-repeat 0 0;
+}
+
+.categories_list_ferme .categories_list_state_img {
+    background: transparent url(../images/plus.png) no-repeat 0 0;
+}
+
+.categories_list ul li {
+    background: transparent url(../images/arbo.png) repeat-y 0 0;
+ }
+.categories_list ul li.last {
+    background: transparent url(../images/arbo_corner.png) no-repeat 0 0;
+ }
+
+.categories_list ul li ul {
+    padding: 0 0 0 16px;
+ }
+
+.categories_list ul li a.categories_list_dir {
+    padding: 0 0 0 16px;
+    background: transparent url(../images/arbo_corner.png) repeat-y 0 0;
+}
+.categories_list ul li.last > a.categories_list_dir {
+    background: none;
+}
+
+/* boutons admin */
+.categories_list a:focus .categories_list_admin_button_img,
+.categories_list a:hover .categories_list_admin_button_img {
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}
+.categories_list a:active .categories_list_admin_button_img {
+    filter: alpha(opacity=20);
+    opacity: 0.2;
+}
+.categories_list_admin_button_img {
+    vertical-align: top;
+    font-size: 0;
+    line-height: 0;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+    width: 16px;
+    cursor: pointer;
+    height: 16px;
+}
+.categories_list_add_img .categories_list_admin_button_img {
+    background: transparent url(../images/add.png) no-repeat 0 0;
+}
+.categories_list_mod_img .categories_list_admin_button_img {
+    background: transparent url(../images/mod.png) no-repeat 0 0;
+}
+.categories_list_del_img .categories_list_admin_button_img {
+    background: transparent url(../images/del.png) no-repeat 0 0;
+}
+.categories_list_tools {
+    padding: 0 0 0 20px;
+}
