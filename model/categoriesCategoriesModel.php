@@ -29,7 +29,7 @@ class categoriesCategoriesModel extends categoriesCategoriesModel_Parent
         $sql = 'SELECT * FROM ' . $this->table_categories . ' WHERE id = \'' . $id . '\' ORDER BY rang_tri LIMIT 1'; 
         $res = $db->fetch_assoc($db->query($sql)); 
         $request = $this->getRequest();
-        if ($request->LANG != __DEFAULT_LANG__ && $res) {
+        if ($request['LANG'] != __DEFAULT_LANG__ && $res) {
             foreach ($this->champs_a_traduire as $champ) {
                 $traduit = $this->getModel('traduction')->traduire_contenu($this->table_categories, $champ, $res['id']);
                 if ($traduit != 'NULL') {
@@ -57,7 +57,7 @@ class categoriesCategoriesModel extends categoriesCategoriesModel_Parent
         $sql = 'SELECT * FROM ' . $this->table_categories . ' WHERE nom = \'' . $db->escape_string($name) . '\' ORDER BY rang_tri LIMIT 1'; 
         $res = $db->fetch_assoc($db->query($sql)); 
         $request = $this->getRequest();
-        if ($request->LANG != __DEFAULT_LANG__ && $res) {
+        if ($request['LANG'] != __DEFAULT_LANG__ && $res) {
             foreach ($this->champs_a_traduire as $champ) {
                 $traduit = $this->getModel('traduction')->traduire_contenu($this->table_categories, $champ, $res['id']);
                 if ($traduit != 'NULL') {
@@ -88,7 +88,7 @@ class categoriesCategoriesModel extends categoriesCategoriesModel_Parent
         $filles = array();
         for (; $res = $db->fetch_assoc($stmt); true) {
             $request = $this->getRequest();
-            if ($request->LANG != __DEFAULT_LANG__) {
+            if ($request['LANG'] != __DEFAULT_LANG__) {
                 foreach ($this->champs_a_traduire as $champ) {
                     $traduit = $this->getModel('traduction')->traduire_contenu($this->table_categories, $champ, $res['id']);
                     if ($traduit != 'NULL') {
@@ -170,11 +170,11 @@ class categoriesCategoriesModel extends categoriesCategoriesModel_Parent
         // modification 
         $request = $this->getRequest();
         $db = $this->getModel('db');
-        if ($request->LANG == __DEFAULT_LANG__) {
+        if ($request['LANG'] == __DEFAULT_LANG__) {
             $sql  = "UPDATE " . $this->table_categories . " SET `nom` = '$nom' WHERE `id` =  '$id' LIMIT 1 "; 
         } else {
             $sql  = "INSERT INTO `" . $this->table_traduction_contenu . "` (orig_table, orig_field, orig_id, lang, texte) 
-                VALUES ('" . $this->table_categories . "', 'nom', '" . $id . "', '" . $request->LANG . "', '" . $nom . "') 
+                VALUES ('" . $this->table_categories . "', 'nom', '" . $id . "', '" . $request['LANG'] . "', '" . $nom . "') 
                 ON DUPLICATE KEY UPDATE texte = '" . $nom . "' ";
         }
         $stmt = $db->query($sql); 
@@ -218,8 +218,8 @@ class categoriesCategoriesModel extends categoriesCategoriesModel_Parent
         $cond = 1; 
         if ($stmt) {
             $request = $this->getRequest();
-            if ($request->LANG != __DEFAULT_LANG__) {
-                $sql = "DELETE FROM `" . $this->table_traduction_contenu . "` WHERE orig_table = '" . $this->table_categories . "' AND orig_id = '" . $id . "' AND lang = '" . $request->LANG . "' "; 
+            if ($request['LANG'] != __DEFAULT_LANG__) {
+                $sql = "DELETE FROM `" . $this->table_traduction_contenu . "` WHERE orig_table = '" . $this->table_categories . "' AND orig_id = '" . $id . "' AND lang = '" . $request['LANG'] . "' "; 
                 $stmt = $db->query($sql); 
             }
         }
