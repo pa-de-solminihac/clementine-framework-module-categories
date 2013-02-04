@@ -17,9 +17,9 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      * @access public
      * @return void
      */
-    function addAction($request, $params = null) 
+    function addAction() 
     {
-        $this->getModel('users')->needPrivilege('manage_categories');
+        $this->getModel('users')->needAuth(); 
         if ($_POST) {
             // recupere les parametres 
             $ns = $this->getModel('fonctions');
@@ -52,9 +52,9 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      * @access public
      * @return void
      */
-    function add_okAction($request, $params = null) 
+    function add_okAction() 
     {
-        $this->getModel('users')->needPrivilege('manage_categories');
+        $this->getModel('users')->needAuth(); 
         $ns = $this->getModel('fonctions');
         $this->data['id'] = $ns->ifGet("int", "id"); 
     }
@@ -65,9 +65,9 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      * @access public
      * @return void
      */
-    function modAction($request, $params = null) 
+    function modAction() 
     {
-        $this->getModel('users')->needPrivilege('manage_categories');
+        $this->getModel('users')->needAuth(); 
         if ($_POST) {
             // recupere les parametres 
             $ns = $this->getModel('fonctions');
@@ -102,9 +102,9 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      * @access public
      * @return void
      */
-    function mod_okAction($request, $params = null) 
+    function mod_okAction() 
     {
-        $this->getModel('users')->needPrivilege('manage_categories');
+        $this->getModel('users')->needAuth(); 
         $ns = $this->getModel('fonctions');
         $this->data['id'] = $ns->ifGet("int", "id"); 
     }
@@ -115,9 +115,9 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      * @access public
      * @return void
      */
-    function delAction($request, $params = null) 
+    function delAction() 
     {
-        $this->getModel('users')->needPrivilege('manage_categories');
+        $this->getModel('users')->needAuth(); 
         if ($_POST) {
             // recupere les parametres 
             $ns = $this->getModel('fonctions');
@@ -154,9 +154,9 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      * @access public
      * @return void
      */
-    function del_okAction($request, $params = null) 
+    function del_okAction() 
     {
-        $this->getModel('users')->needPrivilege('manage_categories');
+        $this->getModel('users')->needAuth(); 
         $ns = $this->getModel('fonctions');
         $this->data['id'] = $ns->ifGet("int", "id"); 
     }
@@ -165,16 +165,12 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      * Function : indexAction() 
      * 
      */
-    function indexAction($request, $params = null) 
+    function indexAction() 
     {
-        $this->getModel('users')->needPrivilege('manage_categories');
-        if (Clementine::$config['module_jstools']['use_google_cdn']) {
-            $this->getModel('cssjs')->register_js('jquery', array('src' => 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'));
-        } else {
-            $this->getModel('cssjs')->register_js('jquery', array('src' => __WWW_ROOT_JSTOOLS__ . '/skin/jquery/jquery.min.js'));
-        }
-        $this->getModel('cssjs')->register_css('jquery.colorbox', array('src' => __WWW_ROOT_JSTOOLS__ . '/skin/colorbox/colorbox.css', 'media' => 'screen'));
-        $this->getModel('cssjs')->register_js('jquery.colorbox', array('src' => __WWW_ROOT_JSTOOLS__ . '/skin/colorbox/jquery.colorbox-min.js'));
+        $this->getModel('users')->needAuth(); 
+        $this->getModel('cssjs')->register_js('jquery', array('src' => 'https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'));
+        $this->getModel('cssjs')->register_js('jquery.colorbox', array('src' => __WWW_ROOT_CATEGORIES__ . '/skin/js/jquery.colorbox-1.3.7/jquery.colorbox.js'));
+        $this->getModel('cssjs')->register_css('jquery.colorbox', array('src' => __WWW_ROOT_CATEGORIES__ . '/skin/css/colorbox.css', 'media' => 'screen'));
         $this->getModel('cssjs')->register_js('clementine_categories_js', array('src' => __WWW_ROOT_CATEGORIES__ . '/skin/js/categories.js'));
         $this->getModel('cssjs')->register_css('clementine_categories_css', array('src' => __WWW_ROOT_CATEGORIES__ . '/skin/css/categories.css'));
     }
@@ -185,13 +181,9 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      * @access public
      * @return void
      */
-    function listAction($request, $params = null) 
+    function listAction() 
     {
-        if (Clementine::$config['module_jstools']['use_google_cdn']) {
-            $this->getModel('cssjs')->register_js('jquery', array('src' => 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'));
-        } else {
-            $this->getModel('cssjs')->register_js('jquery', array('src' => __WWW_ROOT_JSTOOLS__ . '/skin/jquery/jquery.min.js'));
-        }
+        $this->getModel('cssjs')->register_js('jquery', array('src' => 'https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'));
         $this->getModel('cssjs')->register_css('clementine_categories_css', array('src' => __WWW_ROOT_CATEGORIES__ . '/skin/css/categories.css'));
     }
 
@@ -201,16 +193,12 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      * @access public
      * @return void
      */
-    function list_adminAction($request, $params = null) 
+    function list_adminAction() 
     {
-        $this->getModel('users')->needPrivilege('manage_categories');
-        if (Clementine::$config['module_jstools']['use_google_cdn']) {
-            $this->getModel('cssjs')->register_js('jquery', array('src' => 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'));
-        } else {
-            $this->getModel('cssjs')->register_js('jquery', array('src' => __WWW_ROOT_JSTOOLS__ . '/skin/jquery/jquery.min.js'));
-        }
-        $this->getModel('cssjs')->register_css('jquery.colorbox', array('src' => __WWW_ROOT_JSTOOLS__ . '/skin/colorbox/colorbox.css', 'media' => 'screen'));
-        $this->getModel('cssjs')->register_js('jquery.colorbox', array('src' => __WWW_ROOT_JSTOOLS__ . '/skin/colorbox/jquery.colorbox-min.js'));
+        $this->getModel('users')->needAuth(); 
+        $this->getModel('cssjs')->register_js('jquery', array('src' => 'https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js'));
+        $this->getModel('cssjs')->register_js('jquery.colorbox', array('src' => __WWW_ROOT_CATEGORIES__ . '/skin/js/jquery.colorbox-1.3.7/jquery.colorbox.js'));
+        $this->getModel('cssjs')->register_css('jquery.colorbox', array('src' => __WWW_ROOT_CATEGORIES__ . '/skin/css/colorbox.css', 'media' => 'screen'));
         $this->getModel('cssjs')->register_css('clementine_categories_css', array('src' => __WWW_ROOT_CATEGORIES__ . '/skin/css/categories.css'));
     }
 

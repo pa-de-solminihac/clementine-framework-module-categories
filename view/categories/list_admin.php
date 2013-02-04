@@ -36,7 +36,8 @@ if (isset($data['categories_list_link_category_param'])) {
     $link_category_param = $ns->ifGet('string', 'categories_list_link_category_param', null, 'categories_list_parent_id');
 }
 // si la requete n'est pas faite en ajax on verifie la presence de jQuery
-if (!$request->AJAX) {
+$request = $this->getRequest();
+if (!$request['AJAX']) {
 ?>
 <script type="text/javascript" charset="<?php echo __HTML_ENCODING__; ?>">
 <!--
@@ -53,7 +54,7 @@ if (!$request->AJAX) {
 // affichage des categories s'il y en a
 if (isset($data['categories_list']) && count($data['categories_list'])) {
     $mere = $data['categories_list'][0];
-    if (!$request->AJAX || (!$mere) || isset($data['categories_list_parent_id'])) {
+    if (!$request['AJAX'] || (!$mere) || isset($data['categories_list_parent_id'])) {
 ?>
 <div class="categories_list">
 <?php
@@ -265,14 +266,14 @@ if (isset($data['categories_list']) && count($data['categories_list'])) {
 </ul>
 <?php 
     }
-    if (!$request->AJAX || (!$mere) || isset($data['categories_list_parent_id'])) {
+    if (!$request['AJAX'] || (!$mere) || isset($data['categories_list_parent_id'])) {
 ?>
 </div>
 <?php 
     }
 }
 // si la requete n'est pas faite en ajax on charge le javascript pour l'ergonomie
-if (!$request->AJAX) {
+if (!$request['AJAX']) {
 ?>
 <script type="text/javascript">
     if (typeof jQuery != 'undefined') {
