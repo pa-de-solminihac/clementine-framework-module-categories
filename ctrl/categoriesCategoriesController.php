@@ -19,7 +19,7 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      */
     function addAction($request, $params = null) 
     {
-        $this->getModel('users')->needPrivilege('manage_categories');
+        $this->getModel('users')->needAuth(); 
         if ($_POST) {
             // recupere les parametres 
             $ns = $this->getModel('fonctions');
@@ -54,7 +54,7 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      */
     function add_okAction($request, $params = null) 
     {
-        $this->getModel('users')->needPrivilege('manage_categories');
+        $this->getModel('users')->needAuth(); 
         $ns = $this->getModel('fonctions');
         $this->data['id'] = $ns->ifGet("int", "id"); 
     }
@@ -67,7 +67,7 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      */
     function modAction($request, $params = null) 
     {
-        $this->getModel('users')->needPrivilege('manage_categories');
+        $this->getModel('users')->needAuth(); 
         if ($_POST) {
             // recupere les parametres 
             $ns = $this->getModel('fonctions');
@@ -104,7 +104,7 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      */
     function mod_okAction($request, $params = null) 
     {
-        $this->getModel('users')->needPrivilege('manage_categories');
+        $this->getModel('users')->needAuth(); 
         $ns = $this->getModel('fonctions');
         $this->data['id'] = $ns->ifGet("int", "id"); 
     }
@@ -117,7 +117,7 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      */
     function delAction($request, $params = null) 
     {
-        $this->getModel('users')->needPrivilege('manage_categories');
+        $this->getModel('users')->needAuth(); 
         if ($_POST) {
             // recupere les parametres 
             $ns = $this->getModel('fonctions');
@@ -156,7 +156,7 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      */
     function del_okAction($request, $params = null) 
     {
-        $this->getModel('users')->needPrivilege('manage_categories');
+        $this->getModel('users')->needAuth(); 
         $ns = $this->getModel('fonctions');
         $this->data['id'] = $ns->ifGet("int", "id"); 
     }
@@ -167,7 +167,7 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      */
     function indexAction($request, $params = null) 
     {
-        $this->getModel('users')->needPrivilege('manage_categories');
+        $this->getModel('users')->needAuth(); 
         if (Clementine::$config['module_jstools']['use_google_cdn']) {
             $this->getModel('cssjs')->register_js('jquery', array('src' => 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'));
         } else {
@@ -203,7 +203,7 @@ class categoriesCategoriesController extends categoriesCategoriesController_Pare
      */
     function list_adminAction($request, $params = null) 
     {
-        $this->getModel('users')->needPrivilege('manage_categories');
+        $this->getModel('users')->needAuth(); 
         if (Clementine::$config['module_jstools']['use_google_cdn']) {
             $this->getModel('cssjs')->register_js('jquery', array('src' => 'https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js'));
         } else {
